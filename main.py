@@ -27,6 +27,8 @@ try:
     # Указываем пользоваться системным методом ввода, использующимся на
     # платформе, в которой запущенно приложение.
     Config.set('kivy', 'keyboard_mode', 'system')
+    Config.set('graphics', 'width', '350')
+    Config.set('graphics', 'height', '600')
 
     # Activity баг репорта.
     from libs.uix.kv.activity.baseclass.bugreporter import BugReporter
