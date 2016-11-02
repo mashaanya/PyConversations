@@ -1,0 +1,100 @@
+#: kivy 1.9.1
+#: import progress libs.uix.dialogs.dialog_progress
+#: import MDFlatButton kivymd.button.MDFlatButton
+#: import SingleLineTextField kivymd.textfields.SingleLineTextField
+#: import MDCheckbox kivymd.selectioncontrols.MDCheckbox
+
+# Activity регистрации нового аккаунта на сервере.
+
+<AddAccountRoot@BoxLayout>:
+    canvas:
+        Color:
+            rgba: app.data.background
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    orientation: 'vertical'
+    padding: dp(10), dp(10)
+
+    BoxLayout:
+        id: box
+        canvas:
+            Color:
+                rgba: app.data.rectangle
+            Rectangle:
+                size: self.size
+                pos: self.pos
+            Color:
+                rgba: app.data.list_color
+            Rectangle:
+                size: self.size[0] - 2, self.size[1] - 2
+                pos: self.pos[0] + 1, self.pos[1] + 1
+
+        orientation: 'vertical'
+        size_hint_y: None
+        padding: dp(10), dp(10)
+        spacing: dp(15)
+        height: app.window.height // 2
+
+        SingleLineTextField:
+            id: username
+            hint_text: 'Username'
+            on_text:
+                if self.message != '': app.check_len_login_in_textfield(self)
+
+        SingleLineTextField:
+            id: password
+            hint_text: 'Password'
+            password: True
+
+        BoxLayout:
+            id: box_check
+            size_hint_y: None
+            height: dp(40)
+
+            MDCheckbox:
+                id: check
+                size_hint: None, None
+                size: dp(40), dp(40)
+                active: True
+                on_state:
+                    if self.active: box.add_widget(confirm_password)
+                    else: box.remove_widget(confirm_password)
+                    if username.message != '': confirm_password.hint_text = 'Confirm password'
+
+            Label:
+                text: 'Register new account on server'
+                valign: 'middle'
+                color: app.data.text_color
+                size_hint_x: .9
+                text_size: self.size[0] - 10, self.size[1]
+
+        SingleLineTextField:
+            id: confirm_password
+            password: True
+
+        Widget:
+
+    Widget:
+
+    BoxLayout:
+        padding: dp(0), dp(10)
+
+        MDFlatButton:
+            text: app.data.string_lang_cancel
+            theme_text_color: 'Primary'
+            on_release:
+                if app.screen.ids.root_manager.current == 'Add account own provider': \
+                app.screen.ids.root_manager.current = 'Start screen'; \
+                app.screen.ids.action_bar.title = app.title
+                else: \
+                app.screen.ids.root_manager.current = 'Create account';
+                app.screen.ids.action_bar.title = app.data.string_lang_create_account
+
+        MDFlatButton:
+            text: app.data.string_lang_next
+            on_release:
+                instance_progress, instance_text_wait = \
+                progress(text_wait=app.data.string_lang_text_wait.format(app.data.text_color_hex), \
+                events_callback=lambda x: instance_progress.dismiss())

@@ -1,0 +1,50 @@
+#: kivy 1.9.1
+#: import SingleLineTextField kivymd.textfields.SingleLineTextField
+#: import snackbar kivymd.snackbar
+
+# Activity регистрации нового аккаунта.
+# Вызывается по событию кнопки 'Create account' стартового Activity.
+
+<CreateAccount>:
+    name: 'Create account'
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(5), dp(20)
+
+        Image:
+            source: 'data/images/logo.png'
+            size_hint: None, None
+            size: dp(150), dp(150)
+            pos_hint: {'center_x': .5}
+
+        Label:
+            text: app.data.string_lang_enter_user_name
+            markup: True
+            color: app.data.text_color
+            text_size: dp(self.size[0] - 10), self.size[1]
+            size_hint_y: None
+            valign: 'top'
+            height: dp(215)
+
+        Widget:
+            size_hint_y: None
+            height: dp(10)
+
+        SingleLineTextField:
+            id: username
+            hint_text: 'Username'
+            message: 'username@conversations.im'
+            message_mode: 'persistent'
+            on_text: app.check_len_login_in_textfield(self)
+
+        Widget:
+
+        BoxLayout:
+
+            MDFlatButton:
+                text: app.data.string_lang_next
+                on_release:
+                    if username.text == '' or username.text.isspace(): \
+                    snackbar.make(app.data.string_lang_not_valid_username)
+                    else: app.screen_root_manager.current = 'Add account'
