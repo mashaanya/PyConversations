@@ -3,13 +3,7 @@ PyConversations
 
 Демонстрационное приложение, написаное с помощью фреймворка Kivy для статьи "Kivy. От создания до production - один шаг. Часть 1"
 
-![ScreenShot](https://raw.githubusercontent.com/HeaTTheatR/PyConversations/master/data/images/screenshoots/introduction.png)
-
-![ScreenShot](https://raw.githubusercontent.com/HeaTTheatR/PyConversations/master/data/images/screenshoots/createaccount.png)
-
-![ScreenShot](https://raw.githubusercontent.com/HeaTTheatR/PyConversations/master/data/images/screenshoots/addaccount.png)
-
-![ScreenShot](https://raw.githubusercontent.com/HeaTTheatR/PyConversations/master/data/images/screenshoots/addaccountown.png)
+![ScreenShot](https://raw.githubusercontent.com/HeaTTheatR/PyConversations/master/data/images/screenshoots/previous.png)
 
 ЯЗЫК ПРОГРАММИРОВАНИЯ
 ---------------------
